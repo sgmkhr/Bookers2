@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="sidebar">
+    <section class="user-info">
+      
+    </section>
+    <section class="new-book">
+      
+    </section>
+  </div>
+  <div class="books">
+    <div class="head-title">
+      <span>Title</span><span>Opinion</span>
+    </div>
+    <% @books.each do |book| %>
+    <div class="book-list">
+      <ul>
+        <li class="book-image book-list-item">
+          <%= image_tag book.get_book_image %>
+        </li>
+        <li class="book-title book-list-item">
+          <%= link_to book_path(book.id) do %>
+            <span><%= book.title %></span>
+          <% end %>
+        </li>
+        <li class="book-opinion book-list-item">
+          <%= book.body %>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+</div>
