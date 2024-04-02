@@ -12,10 +12,29 @@
 
   <body>
     <header>
+      <%= link_to root_path do %>
+        <div class="logo">Bookers</div>
+      <% end %>
       <% if user_signed_in? %>
         <ul>
           <li>
             <%= link_to "Home", root_path %>
+          </li>
+          <li>
+            <!--以下、後ほどaboutからルート切り替え要-->
+            <%= link_to "Users", home_about_path %>
+          </li>
+          <li>
+            <%= link_to "Books", books_path %>
+          </li>
+          <li>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
+        <% else %>
+        <ul>
+          <li>
+            <%= link_to "Home", user_path(current_user.id) %>
           </li>
           <li>
             <%= link_to "About", home_about_path %>
@@ -27,29 +46,13 @@
             <%= link_to "Log in", new_user_session_path %>
           </li>
         </ul>
-        <% else %>
-        <ul>
-          <li>
-            <%= link_to "Home", root_path %>
-          </li>
-          <li>
-            <!--以下、後ほどaboutからルート切り替え要-->
-            <%= link_to "Users", home_about_path %>
-          </li>
-          <li>
-            <%= link_to "Books", home_about_path %>
-          </li>
-          <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-          </li>
-        </ul>
       <% end %>
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
-      
+      CopyRight Infratop.inc
     </footer>
   </body>
 </html>

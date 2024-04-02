@@ -4,13 +4,15 @@ class Book < ApplicationRecord
   
   belongs_to :user
   
-  def get_book_image
+  def get_book_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpg')
-      image.attach(oi: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     else 
-      image
+      image.variant(resize_to_limit: [width, height]).processed
     end 
   end 
+  
+  
   
 end
