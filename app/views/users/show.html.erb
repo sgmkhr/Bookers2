@@ -1,2 +1,26 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <%= render 'sidebar', user: @user, new_book: @new_book %>
+  <section class="books">
+    <h2 class="section-title">Books</h2>
+    <div class="head-title">
+      <span>Title</span><span>Opinion</span>
+    </div>
+    <% @books.each do |book| %>
+    <div class="book-list">
+      <ul>
+        <li class="user-image book-list-item">
+          <%= image_tag @user.get_profile_image(70, 70) %>
+        </li>
+        <li class="book-title book-list-item">
+          <%= link_to book_path(book.id) do %>
+            <span><%= book.title %></span>
+          <% end %>
+        </li>
+        <li class="book-opinion book-list-item">
+          <%= book.body %>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+  </section>
+</div>

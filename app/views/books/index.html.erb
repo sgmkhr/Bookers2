@@ -1,39 +1,5 @@
 <div class="container">
-  <div class="sidebar">
-    <section class="user-info">
-      <h2 class="section-title">User info</h2>
-      <div class="info-image">
-        <%= image_tag @user.get_profile_image(100, 100) %>
-      </div>
-      <div class="info-name">
-        <p>name</p><p><%= @user.name %></p>
-      </div>
-      <div class="info-introduction">
-        <p>introduction</p><%= @user.introduction %><p>
-      </div>
-      <%= link_to user_path(@user.id) do %>
-        <span><i></i></span>
-      <% end %>
-    </section>
-    <section class="new-book">
-      <h2 class="section-title">New book</h2>
-      <div class="form-section">
-        <%= form_with model: @new_book do |f| %>
-          <div class="form-item">
-            <h4>Title</h4>
-            <%= f.text_field :title %>
-          </div>
-          <div class="form-item">
-            <h4>Opinion</h4>
-            <%= f.text_area :body %>
-          </div>
-          <div class="form-item">
-            <%= f.submit "Create Book" %>
-          </div>
-        <% end %>
-      </div>
-    </section>
-  </div>
+  <%= render 'sidebar', user: @user, new_book: @new_book %>
   <section class="books">
     <h2 class="section-title">Books</h2>
     <div class="head-title">
@@ -42,8 +8,8 @@
     <% @books.each do |book| %>
     <div class="book-list">
       <ul>
-        <li class="book-image book-list-item">
-          <%= image_tag book.get_book_image(70, 70) %>
+        <li class="user-image book-list-item">
+          <%= image_tag book.user.get_profile_image(70, 70) %>
         </li>
         <li class="book-title book-list-item">
           <%= link_to book_path(book.id) do %>
