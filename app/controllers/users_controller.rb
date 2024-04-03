@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def edit
     @user = User.find(params[:id])
   end
@@ -6,6 +9,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:success] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -31,6 +35,13 @@ class UsersController < ApplicationController
   
   def book_params
     params.require(:book).permit(:title, :body)
+  end 
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to books_path
+    end 
   end 
   
 end
