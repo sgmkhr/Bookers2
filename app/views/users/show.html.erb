@@ -1,27 +1,33 @@
 <%= flash[:success] %>
-<div class="container">
+<div class="row">
   <%= render 'sidebar', user: @user, new_book: @new_book %>
-  <section class="books">
-    <h2 class="section-title">Books</h2>
-    <div class="head-title">
-      <span>Title</span><span>Opinion</span>
-    </div>
-    <% @books.each do |book| %>
-    <div class="book-list">
-      <ul>
-        <li class="user-image book-list-item">
-          <%= image_tag @user.get_profile_image(70, 70) %>
-        </li>
-        <li class="book-title book-list-item">
-          <%= link_to book_path(book.id) do %>
-            <span><%= book.title %></span>
-          <% end %>
-        </li>
-        <li class="book-opinion book-list-item">
-          <%= book.body %>
-        </li>
-      </ul>
-    </div>
-    <% end %>
+  <section class="books col-md-8 offset-md-1">
+    <h2 class= "pb-2">Books</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td>
+              <%= image_tag @user.get_profile_image(70, 70) %>
+            </td>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <span><%= book.title %></span>
+              <% end %>
+            </td>
+            <td>
+              <%= book.body %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </section>
 </div>

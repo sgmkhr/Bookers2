@@ -1,33 +1,35 @@
 <%= flash[:success] %>
-<div class="container">
+<div class="row">
   <%= render 'sidebar', user: @user, new_book: @new_book %>
-  <section class="books">
-    <h2 class="section-title">Book detail</h2>
-    <div class="book-list">
-      <div class="col">
-        <div class="user-image book-list-item">
-          <%= image_tag @book.user.get_profile_image(70, 70) %>
-        </div>
-        <%= link_to @book.user.name, url: user_path(@book.user_id) %>
-      </div>
-      <div class="col">
-        <div class="book-title book-list-item">
-          <%= link_to book_path(@book.id) do %>
-            <span><%= @book.title %></span>
-          <% end %>
-        </div>
-        <div class="book-opinion book-list-item">
-          <%= @book.body %>
-        </div>
-        <% if @book.user_id == current_user.id %>
-          <%= link_to edit_book_path(@book.id) do %>
-            <span class="button edit-button">Edit</span>
-          <% end %>
-          <%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-            <span class="button destroy-button">Destroy</span>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+  <section class="books col-md-8 offset-md-1">
+    <h2 class="border-bottom pb-2">Book detail</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <%= image_tag @book.user.get_profile_image(70, 70) %>
+            <p>
+              <%= link_to @book.user.name, url: user_path(@book.user_id) %>
+            </p>
+          </td>
+          <td>
+            <%= link_to book_path(@book.id) do %>
+              <span><%= @book.title %></span>
+            <% end %>
+          </td>
+          <td>
+            <%= @book.body %>
+            <% if @book.user_id == current_user.id %>
+              <%= link_to edit_book_path(@book.id) do %>
+                <span type="button" class="btn btn-success">Edit</span>
+              <% end %>
+              <%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                <span type="button" class="btn btn-danger">Destroy</span>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </div>

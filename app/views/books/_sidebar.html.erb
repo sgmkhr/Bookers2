@@ -1,39 +1,53 @@
 
-  <div class="sidebar">
-    <section class="user-info">
-      <h2 class="section-title">User info</h2>
-      <div class="info-image">
+  <div class="sidebar col-md-3">
+    <section>
+      <h2>User info</h2>
+      <div>
         <%= image_tag user.get_profile_image(100, 100) %>
       </div>
-      <div class="info-name">
-        <p>name</p><p><%= user.name %></p>
-      </div>
-      <div class="info-introduction">
-        <p>introduction</p><%= user.introduction %><p>
-      </div>
+      
+      <table class="table">
+        <tr>
+          <td>
+            <p>name</p>
+          </td>
+          <td>
+            <%= user.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>introduction</p>
+          </td>
+          <td>
+            <%= user.introduction %>
+          </td>
+        </tr>
+      </table>
+      
       <% if user == current_user %>
         <%= link_to edit_user_path(user.id) do %>
-          <span><i class="fa-solid fa-user-gear"></i></span>
+          <button type="button" class="btn btn-outline-secondary btn-block"><i class="fa-solid fa-user-gear"></i></button>
         <% end %>
       <% else %>
         <%= link_to user_path(current_user.id) do %>
-          <span><i class="fa-solid fa-user-gear"></i></span>
+          <button type="button" class="btn btn-outline-secondary btn-block"><i class="fa-solid fa-user-gear"></i></button>
         <% end %>
       <% end %>
     </section>
-    <section class="new-book">
-      <h2 class="section-title">New book</h2>
-      <div class="form-section">
+    <section>
+      <h2>New book</h2>
+      <div>
         <%= form_with model: new_book do |f| %>
-          <div class="form-item">
-            <h4>Title</h4>
+          <div>
+            <p>Title</p>
             <%= f.text_field :title %>
           </div>
-          <div class="form-item">
-            <h4>Opinion</h4>
+          <div>
+            <p>Opinion</p>
             <%= f.text_area :body %>
           </div>
-          <div class="form-item">
+          <div>
             <%= f.submit "Create Book" %>
           </div>
         <% end %>

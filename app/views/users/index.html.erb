@@ -1,24 +1,26 @@
-<div class="container">
+<div class="row">
   <%= render 'sidebar', user: @user, new_book: @new_book %>
-  <section class="lists">
-    <h2 class="section-title">Users</h2>
-    <div class="head-title">
-      <span>image</span><span>name</span>
-    </div>
-    <% @users.each do |user| %>
-    <div class="list">
-      <ul>
-        <li class="list-image list-item">
-          <%= image_tag user.get_profile_image(70, 70) %>
-        </li>
-        <li class="list-name list-item">
-            <span><%= user.name %></span>
-        </li>
-        <li class="show-button list-item">
-          <%= link_to "Show", url: user_path(user.id) %>
-        </li>
-      </ul>
-    </div>
-    <% end %>
+  <section class="lists col-md-8 offset-md-1">
+    <h2>Users</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>image</th><th colspan="2">name</th>
+        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= image_tag user.get_profile_image(70, 70) %>
+            </td>
+            <td>
+              <span><%= user.name %></span>
+            </td>
+            <td>
+              <%= link_to "Show", user_path(user.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </section>
 </div>

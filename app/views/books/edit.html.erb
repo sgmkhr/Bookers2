@@ -1,28 +1,30 @@
-<div class="container">
-  <h2 class="section-title">Editing Book</h2>
-  <% if @book.errors.any? %>
-    <%= @book.errors.count %>errors prohibited this obj from being saved:
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="d-flex justify-content-center">
+  <div class="row m-auto">
+    <div class="col">
+      <h2>Editing Book</h2>
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %>errors prohibited this obj from being saved:
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-  <%= form_with model: @book do |f| %>
-    <div class="form-item">
-      <h4>Title</h4>
-      <%= f.text_field :title %>
+      <%= form_with model: @book do |f| %>
+        <div>
+          <p>Title</p>
+          <%= f.text_field :title %>
+        </div>
+        <div>
+          <p>Opinion</p>
+          <%= f.text_area :body %>
+        </div>
+        <%= f.submit "Update Book", class: "btn btn-success" %>
+      <% end %>
+      <div>
+        <%= link_to book_path(@book.id) do %><span>Show</span><% end %> | 
+        <%= link_to books_path do %><span>Back</span><% end %>
+      </div>
     </div>
-    <div class="form-item">
-      <h4>Opinion</h4>
-      <%= f.text_area :body %>
-    </div>
-    <div class="form-item">
-      <%= f.submit "Update Book" %>
-    </div>
-  <% end %>
-  <div class="pages-transfer">
-    <%= link_to book_path(@book.id) do %><span>Show</span><% end %> | 
-    <%= link_to books_path do %><span>Back</span><% end %>
   </div>
 </div>

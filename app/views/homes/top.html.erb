@@ -1,14 +1,24 @@
-<%= flash[:success] %>
-<h1>welcome to<strong><span><i class="fa-solid fa-book"></i>Bookers</span></strong> !!</h1>
-<p>In <strong><span><i class="fa-solid fa-book"></i>Bookers</span></strong>, <br>
-you can share and exchange your opinions, inpressions, and emotions<br>
-about various books!</p>
 
-<%= link_to new_user_session_path do %>
-  <div class="login-button">Log in</div>
-<% end %>
-<%= link_to new_user_registration_path do %>
-  <div class="signup-button">Sign up</div>
-<% end %>
-
+<div class="d-flex justify-content-center">
+  <%= flash[:success] %>
+  <div class="row m-auto">
+    <div class="col">
+      <div class="contents">
+        <h1>welcome to <strong><span><i class="fa-solid fa-book"></i>Bookers</span></strong> !!</h1>
+        <p>In <strong><span><i class="fa-solid fa-book"></i>Bookers</span></strong>, <br>
+        you can share and exchange your opinions, inpressions, and emotions<br>
+        about various books!</p>
+        
+        <div>
+          <%= link_to new_user_session_path do %>
+            <button type="button" class="btn btn-info btn-block mb-3">Log in</button>
+          <% end %>
+          <%= link_to new_user_registration_path do %>
+            <button type="button" class="btn btn-success btn-block">Sign up</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
