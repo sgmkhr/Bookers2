@@ -1,6 +1,6 @@
 <%= flash[:success] %>
 <div class="row">
-  <%= render 'sidebar', user: @user, new_book: @new_book %>
+  <%= render 'sidebar', {user: @user, new_book: @new_book} %>
   <section class="books col-md-8 offset-md-1">
     <h2 class= "pb-2">Books</h2>
     <table class="table">
