@@ -1,29 +1,29 @@
 <%= flash[:success] %>
 <div class="row">
-  <%= render 'sidebar', user: @user, new_book: @new_book %>
+  <%= render 'sidebar', user: @book.user, new_book: @new_book %>
   <section class="books col-md-8 offset-md-1">
-    <h2 class="border-bottom pb-2">Book detail</h2>
+    <h2>Book detail</h2>
     <table class="table">
       <tbody>
         <tr>
           <td>
-            <%= image_tag @book.user.get_profile_image(70, 70) %>
+            <%= image_tag @book.user.get_profile_image(100, 100) %>
             <p>
-              <%= link_to @book.user.name, url: user_path(@book.user_id) %>
+              <%= link_to @book.user.name, user_path(@book.user) %>
             </p>
           </td>
           <td>
-            <%= link_to book_path(@book.id) do %>
+            <%= link_to book_path(@book) do %>
               <span><%= @book.title %></span>
             <% end %>
           </td>
           <td>
             <%= @book.body %>
             <% if @book.user_id == current_user.id %>
-              <%= link_to edit_book_path(@book.id) do %>
+              <%= link_to edit_book_path(@book) do %>
                 <span type="button" class="btn btn-success">Edit</span>
               <% end %>
-              <%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+              <%= link_to book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                 <span type="button" class="btn btn-danger">Destroy</span>
               <% end %>
             <% end %>

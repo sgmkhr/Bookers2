@@ -1,6 +1,6 @@
 <%= flash[:success] %>
 <div class="row">
-  <%= render 'sidebar', {user: @user, new_book: @new_book} %>
+  <%= render 'sidebar', user: @user, new_book: @new_book %>
   <section class="books col-md-8 offset-md-1">
     <h2 class= "pb-2">Books</h2>
     <table class="table">
@@ -15,10 +15,12 @@
         <% @books.each do |book| %>
           <tr>
             <td>
-              <%= image_tag @user.get_profile_image(70, 70) %>
+              <%= link_to user_path(@user) do %>
+                <%= image_tag @user.get_profile_image(100, 100) %>
+              <% end %>
             </td>
             <td>
-              <%= link_to book_path(book.id) do %>
+              <%= link_to book_path(book) do %>
                 <span><%= book.title %></span>
               <% end %>
             </td>
